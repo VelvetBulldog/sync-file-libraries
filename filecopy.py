@@ -11,12 +11,16 @@ def renamefile(originalfilename):
     return finalfilename
 
 
-def cpfile(source, destination, lz_directory, filename):
+def cpfile(source, destination, lz_directory, destinationdictionary, filename):
 
     shutil.copy(source, lz_directory) #copy to LZ for renaming
 
     lz_file = os.path.join(lz_directory, filename)
     new_filename = renamefile(filename)
+
+    destination2 = destinationdictionary[new_filename.upper()]
+    print("This is the directory from the dictionary: ", destination2)
+
     new_lz_file_name = os.path.join(lz_directory, new_filename)
     new_dst_file_name = os.path.join(destination, new_filename)
     os.rename(lz_file, new_lz_file_name)
